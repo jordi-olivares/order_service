@@ -136,7 +136,7 @@
                 <artifactId>h2</artifactId>
                 <version>${h2db.version}</version>
                 <!-- Uncomment this when exist a real database -->
-                <!--<scope>test</scope>-->
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>javax.xml</groupId>

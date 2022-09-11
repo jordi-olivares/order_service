@@ -28,7 +28,7 @@ public class InventoryServiceImpl implements IInventoryService {
     public List<UserTO> getUsers() {
 
         LOG.info("Consultando usuarios");
-        List<UserDO> usersDO = this.userDAO.findByLastName("Rodriguez");
+        List<UserDO> usersDO = this.userDAO.findByLastName("Romero");
 
         Type userDAOType = new TypeToken<List<UserDO>>() {}.getType();
         List<UserTO> usersTO = this.modelMapper.map(usersDO, userDAOType);
