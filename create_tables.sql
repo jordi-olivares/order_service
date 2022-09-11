@@ -1,3 +1,10 @@
+CREATE TABLE users
+(
+    id SERIAL PRIMARY KEY,
+    ds_name SERIAL VARCHAR(100) NOT NULL,
+    ds_lastname VARCHAR(100) NOT NULL,
+    age INTEGER NOT NULL
+);
 CREATE TABLE mice
 (
 	mouse_id SERIAL PRIMARY KEY,
@@ -10,7 +17,7 @@ CREATE TABLE monitors
 	monitor_id SERIAL PRIMARY KEY,
 	brand VARCHAR(100) NOT NULL,
 	serial_number INTEGER NOT NULL UNIQUE,
-	model VARCHAR(100)
+	model VARCHAR(100) NOT NULL
 );
 CREATE TABLE keyboards
 (

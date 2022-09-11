@@ -1,3 +1,13 @@
+INSERT INTO users (ds_name,ds_lastname,age)
+VALUES ('Jordi','Olivares',26),
+('Orlando','Olivares',30),
+('Jose','Olivares',54),
+('Puppy','Olivares',4),
+('Byron','Olivares',12),
+('Lorena','Romero',48),
+('Omar','Salinas',48),
+('Ramona','PerroBurro',9);
+
 INSERT INTO monitors (monitor_id,brand,serial_number,model)
 VALUES (1,'dell',123,'doble'),
 (2,'dell',124,'doble'),
