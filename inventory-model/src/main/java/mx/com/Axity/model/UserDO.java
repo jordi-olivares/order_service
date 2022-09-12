@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.apache.commons.lang.builder.CompareToBuilder;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -13,7 +15,7 @@ import java.io.Serializable;
 @Table(name = "users", schema = "public")
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDO implements Serializable{
+public class UserDO implements Comparable<UserDO>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,4 +27,9 @@ public class UserDO implements Serializable{
     private String lastName;
     @Column(name = "age")
     private int age;
+
+    @Override
+    public int compareTo(UserDO o) {
+        return new CompareToBuilder().append(this.id, o.id).toComparison();
+    }
 }
