@@ -8,37 +8,48 @@ import org.apache.commons.lang.builder.CompareToBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "monitors", schema = "public")
+@Table(name = "mice", schema = "public")
 @NoArgsConstructor
 @AllArgsConstructor
-public class MonitorDO implements Comparable<MonitorDO> {
+public class ComputerDO implements Comparable<ComputerDO>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "computer_id")
+    private Long computerId;
+    @Column(name = "keyboard_id")
+    private Long keyboardId;
+    @Column(name = "mouse_id")
+    private Long mouseId;
     @Column(name = "monitor_id")
     private Long monitorId;
     @Column(name = "brand")
     private String brand;
     @Column(name = "serial_number")
-    private Integer serialNumber;
-    @Column(name = "model")
-    private String model;
+    private int serialNumber;
 
+
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("keyboard Id", this.monitorId)
+                .append("computer id",this.computerId)
+                .append("keyboard id",this.keyboardId)
+                .append("mouseId", this.mouseId)
+                .append("monitor id",this.monitorId)
                 .append("Brand", this.brand)
                 .append("Serial Number", this.serialNumber)
-                .append("model", this.model)
                 .toString();
     }
     @Override
-    public int compareTo(MonitorDO o) {
-        return new CompareToBuilder().append(this.monitorId, o.monitorId).toComparison();
+    public int compareTo(ComputerDO o) {
+        return new CompareToBuilder().append(this.computerId, o.computerId).toComparison();
     }
+
 }

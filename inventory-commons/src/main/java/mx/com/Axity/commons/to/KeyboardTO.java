@@ -8,19 +8,23 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-public class MonitorTO implements Serializable {
-    private Long monitorId;
+public class KeyboardTO implements Serializable {
+    private Long keyboardId;
     private String brand;
     private Integer serialNumber;
     private String model;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("keyboard Id", this.monitorId)
+                .append("keyboard Id", this.keyboardId)
                 .append("Brand", this.brand)
                 .append("Serial Number", this.serialNumber)
                 .append("model", this.model)
                 .toString();
     }
+
 }
