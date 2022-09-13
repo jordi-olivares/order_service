@@ -2,7 +2,9 @@ package mx.com.Axity.web.rest;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import mx.com.Axity.commons.to.ComputerTO;
 import mx.com.Axity.commons.to.MouseTO;
+import mx.com.Axity.commons.to.ResponseTO;
 import mx.com.Axity.commons.to.UserTO;
 import mx.com.Axity.services.facade.IInventoryFacade;
 import org.apache.logging.log4j.LogManager;
@@ -17,7 +19,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", allowCredentials = "true")
 @RestController
-@RequestMapping("inventory")
+@RequestMapping("serviceorder/v1")
 @Api(value="inventory")
 public class HelloController {
 
@@ -62,5 +64,14 @@ public class HelloController {
         MouseTO responseValue = new MouseTO();
         responseValue = IInventoryFacade.getMouseById((int) id);
         return new ResponseEntity<MouseTO>(responseValue, HttpStatus.OK);
+    }
+
+    //metodo post de las computadoras
+    @PostMapping(value = "/computer", produces = { MediaType.APPLICATION_JSON_VALUE }, consumes = {
+           MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<ResponseTO> createComputer(@RequestBody ComputerTO request) {
+        LOG.info("Se invoca POST /computer");
+        ResponseTO responseValue = IInventoryFacade.createComputer(request);
+        return new ResponseEntity<ResponseTO>(responseValue, HttpStatus.CREATED);
     }
 }

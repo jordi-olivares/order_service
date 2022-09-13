@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "mice", schema = "public")
+@Table(name = "computers", schema = "public")
 @NoArgsConstructor
 @AllArgsConstructor
 public class ComputerDO implements Comparable<ComputerDO>{
@@ -21,15 +21,15 @@ public class ComputerDO implements Comparable<ComputerDO>{
     @Column(name = "computer_id")
     private Long computerId;
     @Column(name = "keyboard_id")
-    private Long keyboardId;
+    private Integer keyboardId;
     @Column(name = "mouse_id")
-    private Long mouseId;
+    private Integer mouseId;
     @Column(name = "monitor_id")
-    private Long monitorId;
+    private Integer monitorId;
     @Column(name = "brand")
     private String brand;
     @Column(name = "serial_number")
-    private int serialNumber;
+    private Integer serialNumber;
 
 
 

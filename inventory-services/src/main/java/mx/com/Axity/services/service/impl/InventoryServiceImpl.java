@@ -1,9 +1,13 @@
 package mx.com.Axity.services.service.impl;
 
+import mx.com.Axity.commons.to.ComputerTO;
 import mx.com.Axity.commons.to.MouseTO;
+import mx.com.Axity.commons.to.ResponseTO;
 import mx.com.Axity.commons.to.UserTO;
+import mx.com.Axity.model.ComputerDO;
 import mx.com.Axity.model.MouseDO;
 import mx.com.Axity.model.UserDO;
+import mx.com.Axity.persistence.ComputerDAO;
 import mx.com.Axity.persistence.MouseDAO;
 import mx.com.Axity.persistence.UserDAO;
 import mx.com.Axity.services.service.IInventoryService;
@@ -27,6 +31,8 @@ public class InventoryServiceImpl implements IInventoryService {
     UserDAO userDAO;
     @Autowired
     MouseDAO mouseDAO;
+    @Autowired
+    ComputerDAO computerDAO;
 
     @Autowired
     ModelMapper modelMapper;
@@ -80,6 +86,24 @@ public class InventoryServiceImpl implements IInventoryService {
         MouseTO mouseTo = modelMapper.map(mouse, MouseTO.class);
 
         return mouseTo;
+    }
+
+
+    //Parte de las computadoras
+
+    @Override
+    public ResponseTO createComputer(ComputerTO computer){
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        ComputerDO computerDO=modelMapper.map(computer, ComputerDO.class);
+        computerDAO.save(computerDO);
+        ResponseTO responseValue = new ResponseTO();
+
+        responseValue.setCode(201);
+        responseValue.setMessage("La computadora se ha registrado con el identificador --> " + computerDO.getComputerId());
+
+        return responseValue;
+
     }
 
 }

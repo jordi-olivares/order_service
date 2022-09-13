@@ -1,6 +1,8 @@
 package mx.com.Axity.services.facade.impl;
 
+import mx.com.Axity.commons.to.ComputerTO;
 import mx.com.Axity.commons.to.MouseTO;
+import mx.com.Axity.commons.to.ResponseTO;
 import mx.com.Axity.commons.to.UserTO;
 import mx.com.Axity.services.facade.IInventoryFacade;
 import mx.com.Axity.services.service.IInventoryService;
@@ -26,5 +28,10 @@ public class InventoryFacade implements IInventoryFacade {
     @Override
     public MouseTO getMouseById(long mouseId) {
         return this.inventoryService.getMouseById(mouseId);
+    }
+
+    @Override
+    public ResponseTO createComputer(ComputerTO computer) {
+        return this.inventoryService.createComputer(computer);
     }
 }

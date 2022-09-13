@@ -9,12 +9,11 @@ import java.io.Serializable;
 @Setter
 public class ComputerTO implements Serializable {
     private Long computerId;
-    private Long keyboardId;
-    private Long mouseId;
-    private Long monitorId;
+    private Integer keyboardId;
+    private Integer mouseId;
+    private Integer monitorId;
     private String brand;
-    private int serialNumber;
-
+    private Integer serialNumber;
     /**
      * {@inheritDoc}
      */
