@@ -103,7 +103,6 @@ public class InventoryServiceImpl implements IInventoryService {
         responseValue.setMessage("La computadora se ha registrado con el identificador --> " + computerDO.getComputerId());
 
         return responseValue;
-
     }
 
 }

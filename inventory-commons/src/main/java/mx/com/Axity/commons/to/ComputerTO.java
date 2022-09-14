@@ -12,6 +12,7 @@ public class ComputerTO implements Serializable {
     private Integer keyboardId;
     private Integer mouseId;
     private Integer monitorId;
+    private Integer orderId;
     private String brand;
     private Integer serialNumber;
     /**
@@ -24,6 +25,7 @@ public class ComputerTO implements Serializable {
                 .append("keyboard id",this.keyboardId)
                 .append("mouseId", this.mouseId)
                 .append("monitor id",this.monitorId)
+                .append("order id",this.orderId)
                 .append("Brand", this.brand)
                 .append("Serial Number", this.serialNumber)
                 .toString();
