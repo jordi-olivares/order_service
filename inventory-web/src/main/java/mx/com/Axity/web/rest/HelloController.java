@@ -2,10 +2,7 @@ package mx.com.Axity.web.rest;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import mx.com.Axity.commons.to.ComputerTO;
-import mx.com.Axity.commons.to.MouseTO;
-import mx.com.Axity.commons.to.ResponseTO;
-import mx.com.Axity.commons.to.UserTO;
+import mx.com.Axity.commons.to.*;
 import mx.com.Axity.services.facade.IInventoryFacade;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -74,4 +71,15 @@ public class HelloController {
         ResponseTO responseValue = IInventoryFacade.createComputer(request);
         return new ResponseEntity<ResponseTO>(responseValue, HttpStatus.CREATED);
     }
+
+
+    //Get por id de las ordenes
+    @GetMapping(value = "/order/{id}", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<OrderTO> getOrder(@PathVariable("id") long id) {
+        LOG.info("Se invoca GET /order/" + id);
+        OrderTO responseValue = new OrderTO();
+        responseValue = IInventoryFacade.getOrderById(id);
+        return new ResponseEntity<OrderTO>(responseValue, HttpStatus.OK);
+    }
+
 }

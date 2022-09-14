@@ -1,9 +1,7 @@
 package mx.com.Axity.services.service;
 
-import mx.com.Axity.commons.to.ComputerTO;
-import mx.com.Axity.commons.to.MouseTO;
-import mx.com.Axity.commons.to.ResponseTO;
-import mx.com.Axity.commons.to.UserTO;
+import mx.com.Axity.commons.to.*;
+
 import java.util.List;
 
 public interface IInventoryService {
@@ -17,5 +15,6 @@ public interface IInventoryService {
 
     //Métodos para la orden
     ResponseTO createComputer(ComputerTO computer);
+    OrderTO getOrderById(long orderId);
 
 }

@@ -36,7 +36,6 @@ public class ComputerDO implements Serializable {
     private Integer serialNumber;
 
 
-
     /**
      * {@inheritDoc}
      */

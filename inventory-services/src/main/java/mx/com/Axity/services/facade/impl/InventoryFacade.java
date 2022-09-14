@@ -1,9 +1,6 @@
 package mx.com.Axity.services.facade.impl;
 
-import mx.com.Axity.commons.to.ComputerTO;
-import mx.com.Axity.commons.to.MouseTO;
-import mx.com.Axity.commons.to.ResponseTO;
-import mx.com.Axity.commons.to.UserTO;
+import mx.com.Axity.commons.to.*;
 import mx.com.Axity.services.facade.IInventoryFacade;
 import mx.com.Axity.services.service.IInventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +30,10 @@ public class InventoryFacade implements IInventoryFacade {
     @Override
     public ResponseTO createComputer(ComputerTO computer) {
         return this.inventoryService.createComputer(computer);
+    }
+
+    @Override
+    public OrderTO getOrderById(long orderId) {
+        return this.inventoryService.getOrderById(orderId);
     }
 }
