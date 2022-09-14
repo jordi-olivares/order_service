@@ -95,11 +95,18 @@ public class InventoryServiceImpl implements IInventoryService {
 
     @Override
     public ResponseTO createComputer(ComputerTO computer){
+        int amount;
+        ResponseTO responseValue = new ResponseTO();
+        amount=(computerDAO.findByOrderId(computer.getOrderId())).size();
+        if (amount>=5){
+            responseValue.setCode(400);
+            responseValue.setMessage("La orden con el id -->"+computer.getOrderId()+" ya cuenta con 5 computadoras");
+            return responseValue;
+        }
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         ComputerDO computerDO=modelMapper.map(computer, ComputerDO.class);
         computerDAO.save(computerDO);
-        ResponseTO responseValue = new ResponseTO();
 
         responseValue.setCode(201);
         responseValue.setMessage("La computadora se ha registrado con el identificador --> " + computerDO.getComputerId());
