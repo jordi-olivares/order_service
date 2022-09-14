@@ -82,4 +82,11 @@ public class HelloController {
         return new ResponseEntity<OrderTO>(responseValue, HttpStatus.OK);
     }
 
+    @PostMapping(value = "/order", produces = { MediaType.APPLICATION_JSON_VALUE }, consumes = {
+            MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<ResponseTO> createOrder(@RequestBody OrderTO request) {
+        LOG.info("Se invoca POST /order");
+        ResponseTO responseValue = IInventoryFacade.createOrder(request);
+        return new ResponseEntity<ResponseTO>(responseValue, HttpStatus.CREATED);
+    }
 }

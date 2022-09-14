@@ -11,5 +11,6 @@ public interface IInventoryFacade {
     MouseTO getMouseById(long mouseId);
     ResponseTO createComputer(ComputerTO computer);
     OrderTO getOrderById(long orderId);
+    ResponseTO createOrder(OrderTO order);
 
 }

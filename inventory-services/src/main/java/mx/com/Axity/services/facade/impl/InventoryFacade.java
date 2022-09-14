@@ -36,4 +36,9 @@ public class InventoryFacade implements IInventoryFacade {
     public OrderTO getOrderById(long orderId) {
         return this.inventoryService.getOrderById(orderId);
     }
+
+    @Override
+    public ResponseTO createOrder(OrderTO order) {
+        return this.inventoryService.createOrder(order);
+    }
 }

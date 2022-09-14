@@ -16,5 +16,5 @@ public interface IInventoryService {
     //Métodos para la orden
     ResponseTO createComputer(ComputerTO computer);
     OrderTO getOrderById(long orderId);
-
+    ResponseTO createOrder(OrderTO order);
 }

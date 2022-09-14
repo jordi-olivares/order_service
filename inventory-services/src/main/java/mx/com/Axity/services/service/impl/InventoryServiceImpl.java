@@ -124,4 +124,37 @@ public class InventoryServiceImpl implements IInventoryService {
         return orderTO;
     }
 
+    //el método creteOrder no necesita el id
+
+    @Override
+    public ResponseTO createOrder(OrderTO order) {
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        OrderDO orderDO=new OrderDO();
+        orderDO.setDescription(order.getDescription());
+        List<ComputerTO> computers=order.getComputers();
+        ResponseTO responseValue = new ResponseTO();
+        ComputerDO computerDO=new ComputerDO();
+        if (computers.size()>5){
+            responseValue.setCode(400);
+            responseValue.setMessage("Una orden no puede tener más de 5 computadoras --> " + orderDO.getOrderId());
+            return responseValue;
+        }
+        orderDAO.save(orderDO);
+        for (int i=0;i<computers.size();i++){
+            //if(computers.get(i).getComputerId()!=null||computers.get(i).getOrderId()!=null){
+            //    responseValue.setCode(400);
+            //    responseValue.setMessage("Ya existe una computadora con este id --> " + computers.get(i).getComputerId()+" porfavor ingrese un valor nulo ");
+            //    return responseValue;
+            //}
+            computerDO=modelMapper.map(computers.get(i), ComputerDO.class);
+            computerDO.setOrderId(Math.toIntExact(orderDO.getOrderId()));
+            computerDAO.save(computerDO);
+        }
+
+        responseValue.setCode(200);
+        responseValue.setMessage("Orden guardada con el id --> " + orderDO.getOrderId());
+        return responseValue;
+    }
+
 }
