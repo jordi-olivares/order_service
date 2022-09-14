@@ -120,6 +120,7 @@ public class InventoryServiceImpl implements IInventoryService {
         for (int i=0;i<listado.size();i++){
             listato.add(modelMapper.map(listado.get(i), ComputerTO.class));
         }
+        orderTO.setAmount(listato.size());
         orderTO.setComputers(listato);
         return orderTO;
     }
@@ -135,18 +136,13 @@ public class InventoryServiceImpl implements IInventoryService {
         List<ComputerTO> computers=order.getComputers();
         ResponseTO responseValue = new ResponseTO();
         ComputerDO computerDO=new ComputerDO();
-        if (computers.size()>5){
+        if (computers.size()>5||order.getAmount()!=computers.size()){
             responseValue.setCode(400);
-            responseValue.setMessage("Una orden no puede tener más de 5 computadoras --> " + orderDO.getOrderId());
+            responseValue.setMessage("Una orden no puede tener más de 5 computadoras --> " +" o tal vez indico la cantidad de manera incorrecta");
             return responseValue;
         }
         orderDAO.save(orderDO);
         for (int i=0;i<computers.size();i++){
-            //if(computers.get(i).getComputerId()!=null||computers.get(i).getOrderId()!=null){
-            //    responseValue.setCode(400);
-            //    responseValue.setMessage("Ya existe una computadora con este id --> " + computers.get(i).getComputerId()+" porfavor ingrese un valor nulo ");
-            //    return responseValue;
-            //}
             computerDO=modelMapper.map(computers.get(i), ComputerDO.class);
             computerDO.setOrderId(Math.toIntExact(orderDO.getOrderId()));
             computerDAO.save(computerDO);

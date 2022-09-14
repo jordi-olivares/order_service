@@ -12,7 +12,9 @@ import java.util.Set;
 public class OrderTO {
     private Long orderId;
     private String description;
+    private int amount;
     private List<ComputerTO> computers;
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)
