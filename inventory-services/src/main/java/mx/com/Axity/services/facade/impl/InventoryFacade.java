@@ -18,16 +18,6 @@ public class InventoryFacade implements IInventoryFacade {
     }
 
     @Override
-    public List<MouseTO> getAllMice() {
-        return this.inventoryService.getAllMice();
-    }
-
-    @Override
-    public MouseTO getMouseById(long mouseId) {
-        return this.inventoryService.getMouseById(mouseId);
-    }
-
-    @Override
     public ResponseTO createComputer(ComputerTO computer) {
         return this.inventoryService.createComputer(computer);
     }

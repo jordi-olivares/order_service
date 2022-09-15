@@ -21,10 +21,6 @@ import java.util.List;
 public class HelloController {
 
     static final Logger LOG = LogManager.getLogger(HelloController.class);
-
-    //@Autowired
-    //RestTemplate restTemplate;
-
     @Autowired
     IInventoryFacade IInventoryFacade;
     @Autowired
@@ -48,20 +44,9 @@ public class HelloController {
         return new ResponseEntity<>("pong", HttpStatus.OK);
     }
 
-    @GetMapping(value = "/mice", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<List<MouseTO>> getMouses() {
-        LOG.info("Se invoca GET /mice" + env.getProperty("local.sever.port"));
-        List<MouseTO> returnResponse = IInventoryFacade.getAllMice();
-        return new ResponseEntity<List<MouseTO>>(returnResponse, HttpStatus.OK);
-    }
 
-    @GetMapping(value = "/mouse/{id}", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<MouseTO> getMouse(@PathVariable("id") long id) {
-        LOG.info("Se invoca GET /mouse/" + id);
-        MouseTO responseValue = new MouseTO();
-        responseValue = IInventoryFacade.getMouseById((int) id);
-        return new ResponseEntity<MouseTO>(responseValue, HttpStatus.OK);
-    }
+
+
 
     //metodo post de las computadoras
     @PostMapping(value = "/computer", produces = { MediaType.APPLICATION_JSON_VALUE }, consumes = {

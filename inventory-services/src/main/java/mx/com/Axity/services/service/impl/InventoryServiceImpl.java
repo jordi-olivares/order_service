@@ -2,11 +2,9 @@ package mx.com.Axity.services.service.impl;
 
 import mx.com.Axity.commons.to.*;
 import mx.com.Axity.model.ComputerDO;
-import mx.com.Axity.model.MouseDO;
 import mx.com.Axity.model.OrderDO;
 import mx.com.Axity.model.UserDO;
 import mx.com.Axity.persistence.ComputerDAO;
-import mx.com.Axity.persistence.MouseDAO;
 import mx.com.Axity.persistence.OrderDAO;
 import mx.com.Axity.persistence.UserDAO;
 import mx.com.Axity.services.service.IInventoryService;
@@ -20,7 +18,6 @@ import org.springframework.stereotype.Service;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class InventoryServiceImpl implements IInventoryService {
@@ -29,8 +26,7 @@ public class InventoryServiceImpl implements IInventoryService {
 
     @Autowired
     UserDAO userDAO;
-    @Autowired
-    MouseDAO mouseDAO;
+
     @Autowired
     ComputerDAO computerDAO;
     @Autowired
@@ -50,44 +46,6 @@ public class InventoryServiceImpl implements IInventoryService {
         LOG.info("Se retornan {} elementos", usersTO.size());
 
         return usersTO;
-    }
-
-
-
-    //Para la parte de mice
-    @Override
-    public MouseTO getMouseById(long mouseId) {
-
-        LOG.info("Obteniendo valor para el parámetro " + mouseId);
-
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-
-        MouseDO mouseDo = mouseDAO.findByMouseId(mouseId);
-        MouseTO returnValue = modelMapper.map((Object) mouseDo, (Type) MouseTO.class);
-
-        return returnValue;
-    }
-
-    @Override
-    public List<MouseTO> getAllMice() {
-
-        LOG.info("Obteniendo todos los ratones ");
-
-        List<MouseDO> mouseDo =  (List<MouseDO>) mouseDAO.findAll();
-
-        return mouseDo.stream().map(this::convertToTO).collect(Collectors.toList());
-
-    }
-
-    private MouseTO convertToTO(MouseDO mouse) {
-
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-
-        MouseTO mouseTo = modelMapper.map(mouse, MouseTO.class);
-
-        return mouseTo;
     }
 
 

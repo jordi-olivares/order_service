@@ -7,8 +7,7 @@ import java.util.List;
 public interface IInventoryFacade {
 
     List<UserTO> getAllUsers();
-    List<MouseTO> getAllMice();
-    MouseTO getMouseById(long mouseId);
+
     ResponseTO createComputer(ComputerTO computer);
     OrderTO getOrderById(long orderId);
     ResponseTO createOrder(OrderTO order);
